@@ -1,7 +1,11 @@
+// add-page-dialog.tsx (修正後)
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -14,7 +18,7 @@ export function AddPageDialog() {
     newPageTitle,
     setNewPageTitle,
     newPageEmoji,
-    setNewPageEmoji,
+    setNewPageEmoji, // ◀️ この関数が使われるように修正
     isAddPageDialogOpen,
     setIsAddPageDialogOpen,
     addPage,
@@ -24,9 +28,6 @@ export function AddPageDialog() {
     addPage(newPageTitle, newPageEmoji);
   };
 
-  /**
-   * Enterキーでのページ作成を可能にする
-   */
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleAddPage();
@@ -35,58 +36,48 @@ export function AddPageDialog() {
 
   return (
     <Dialog open={isAddPageDialogOpen} onOpenChange={setIsAddPageDialogOpen}>
-      <DialogContent className="sm:max-w-md bg-white/95 border-stone-200">
+      <DialogContent className="sm:max-w-md bg-white/90 backdrop-blur-xl border-neutral-200/80 shadow-2xl">
         <DialogHeader>
-          <DialogTitle className="text-stone-800">
-            新しいページを作成
+          <DialogTitle className="text-neutral-900">
+            Create New Page
           </DialogTitle>
+          <DialogDescription>
+            Give your new page a title and an icon to get started.
+          </DialogDescription>
         </DialogHeader>
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">
-              ページタイトル
-            </label>
-            <Input
-              placeholder="ページタイトル"
-              value={newPageTitle}
-              onChange={(e) => setNewPageTitle(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="border-stone-200 focus:border-stone-500 focus:ring-stone-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">
-              絵文字
-            </label>
+        <div className="space-y-4 py-4">
+          {/* ◀️ 絵文字とタイトルの入力欄を修正 */}
+          <div className="flex items-center space-x-3">
             <Input
               placeholder="📝"
               value={newPageEmoji}
               onChange={(e) => setNewPageEmoji(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="border-stone-200 focus:border-stone-500 focus:ring-stone-500 text-2xl text-center"
+              className="text-4xl text-center w-20 h-20 p-2 rounded-lg bg-neutral-100 border-neutral-200 focus:border-blue-500 focus:ring-blue-500"
               maxLength={2}
             />
-            <p className="text-xs text-stone-500 mt-1">
-              ページを表す絵文字を入力してください。空白の場合、📝が使用されます。
-            </p>
-          </div>
-          <div className="flex justify-end space-x-2">
-            <Button
-              variant="outline"
-              onClick={() => setIsAddPageDialogOpen(false)}
-              className="border-stone-200 text-stone-700 hover:bg-stone-100"
-            >
-              キャンセル
-            </Button>
-            <Button
-              onClick={handleAddPage}
-              disabled={!newPageTitle.trim()}
-              className="bg-stone-600 hover:bg-stone-700 text-white"
-            >
-              ページを作成
-            </Button>
+            <Input
+              id="page-title"
+              placeholder="Untitled"
+              value={newPageTitle}
+              onChange={(e) => setNewPageTitle(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="text-lg font-semibold border-0 border-b-2 border-transparent focus:border-blue-500 focus:ring-0 h-12 p-0 bg-transparent flex-1"
+            />
           </div>
         </div>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => setIsAddPageDialogOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            onClick={handleAddPage}
+            disabled={!newPageTitle.trim()}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            Create Page
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
