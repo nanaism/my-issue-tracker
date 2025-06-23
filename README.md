@@ -1,54 +1,38 @@
-# React + TypeScript + Vite
+![FireShot Webpage Capture 019 - 'Todo管理er' - nanaism github io](https://github.com/user-attachments/assets/a1839eda-cb4c-4a97-a6e1-23363f1cb1f1)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# 必須機能
+- アイデアブロック管理：
+- アイデアをブロックとして追加・削除・並び替えできる。
+- ToDo データベースビュー：
+- ToDo をテーブル形式で表示・管理する。
+- 詳細表示：
+- ToDo クリックで右サイドバーに詳細ページを表示する。
+- ページ管理：
+- 複数ページの作成・切り替え・削除を行う。
+- ToDo データベース機能
+ - ToDo をテーブル形式（データベースビュー）で表示できる。
+ - ToDo のタイトル、ステータス（未完了/完了）、作成日が表示される。
+ - 新しい ToDo を追加できる。
+ - ToDo のステータスを切り替えできる。
+ - ToDo を削除できる。
+- 詳細表示機能
+ - ToDo をクリックすると、右サイドバーが開き詳細が表示される。
+ - サイドバーで ToDo のタイトル、説明、ステータスを編集できる。
+ - サイドバーを閉じることができる。
+- ページ管理機能
+ - 新しいページを作成できる。
+ - ページタブでページを切り替えできる。
+ - ページのタイトルを編集できる。
+ - ページを削除できる（最低 1 ページは残る）。
+ - 各ページで独立したアイデアブロックと ToDo を管理できる。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# ユーザーストーリー
+- アイデアブロック機能
+ - ユーザーがページにアクセスすると、アイデアを入力できるフォームが表示されている。
+ - 追加したアイデアが、ブロック形式で縦に一覧表示される。
+ - アイデアブロックをドラッグ&ドロップで並び替えできる。
+ - アイデアブロックを削除できる。
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+# その他
+ - アプリケーションがデプロイされており、誰でもアクセス可能である。
